@@ -10,23 +10,28 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "../button";
 import { useTheme } from "@/components/providers/theme-provider";
+import { SidebarTrigger } from "../sidebar";
 
 export const Navbar = () => {
   const { setTheme } = useTheme();
 
   return (
-    <nav className="p-4 flex items-center justify-between">
+    <nav className="p-4 flex items-center justify-between sticky top-0 bg-background z-10">
       {/* LEFT */}
-      collapseButton
+      <SidebarTrigger />
+      {/* <Button variant="outline" onClick={toggleSidebar}>
+        Custom Button
+      </Button> */}
       {/* RIGHT */}
       <div className="flex items-center gap-4">
-        <a href="#">Dashboard</a>
-
+        <a href="/">Dashboard</a>
+        {/* THEME MENU */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">
-              <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -41,12 +46,12 @@ export const Navbar = () => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-
+        {/* USER MENU */}
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar className="cursor-pointer">
               <AvatarImage src="https://github.com/jvbs.png" />
-              <AvatarFallback>JV</AvatarFallback>
+              <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent sideOffset={10}>
@@ -57,10 +62,12 @@ export const Navbar = () => {
               Profile
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Settings className="h-[1.2rem] w-[1.2rem] mr-2" /> Settings
+              <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
+              Settings
             </DropdownMenuItem>
             <DropdownMenuItem variant="destructive">
-              <LogOut className="h-[1.2rem] w-[1.2rem] mr-2" /> Logout
+              <LogOut className="h-[1.2rem] w-[1.2rem] mr-2" />
+              Logout
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
